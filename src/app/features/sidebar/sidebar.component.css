@@ -1,0 +1,12 @@
+.sidenav-container {
+    height: 100vh; /* 100% da altura da viewport */
+  }
+  
+  .sidenav {
+    width: 200px; /* Largura da barra lateral */
+    background-color: aqua;
+  }
+  
+  .content {
+    padding: 16px; /* Adicione algum espaço para o conteúdo principal */
+  }

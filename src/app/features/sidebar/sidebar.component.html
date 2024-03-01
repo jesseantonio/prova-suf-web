@@ -1,0 +1,15 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" [opened]="true" class="sidenav">
+    <!-- Conteúdo da barra lateral -->
+    <mat-nav-list>
+      <a mat-list-item routerLink="/inserir">Inserir</a>
+      <a mat-list-item routerLink="/listar">Listar</a>
+      <a mat-list-item routerLink="/alterar">Alterar</a>
+      <a mat-list-item routerLink="/excluir">Excluir</a>
+      <!-- Adicione mais links conforme necessário -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
