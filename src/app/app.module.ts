@@ -8,11 +8,15 @@ import { SidebarComponent } from './features/sidebar/sidebar.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatInputModule } from '@angular/material';
 import { InsertComponent } from './features/insert/insert.component';
 import { DeleteComponent } from './features/delete/delete.component';
 import { UpdateComponent } from './features/update/update.component';
 import { ListComponent } from './features/list/list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EmployeeService } from './core/services/employee/employee.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,9 +37,15 @@ import { ListComponent } from './features/list/list.component';
     MatMenuModule,
     MatCardModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
