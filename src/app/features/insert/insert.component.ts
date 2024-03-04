@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { EmployeeService } from 'src/app/core/services/employee/employee.service';
 
 @Component({
@@ -12,8 +13,9 @@ export class InsertComponent implements OnInit {
   public formGroup!: FormGroup;
   constructor(
     public form: FormBuilder,
-    public employeeService: EmployeeService
-    ) { }
+    public employeeService: EmployeeService,
+    public snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.formGroup = this.form.group({
@@ -26,14 +28,27 @@ export class InsertComponent implements OnInit {
   }
 
   salvar() {
-    let employee = this.formGroup.value;
-    debugger
-    this.employeeService.create(employee).subscribe(() => {
-      //this.loading = false;
-      //this.sucessMessage("Cor Salva com sucesso!")
-      //delete this.card.style.backgroundColor;
-      this.formGroup.reset();
-    });
+    this.validaForm()
+    if (this.formGroup.valid) {
+      let employee = this.formGroup.value;
+      debugger
+      this.employeeService.create(employee).subscribe(() => {
+        //this.loading = false;
+        //delete this.card.style.backgroundColor;
+        this.formGroup.reset();
+      });
+    }
   }
+
+  validaForm() {
+    if (this.formGroup.invalid) {
+      return Object.keys(this.formGroup.controls).forEach(field => {
+        const control: any = this.formGroup.get(field);
+        control.markAsDirty();
+        control.markAsTouched({ onlySelf: true });
+      });
+    }
+  }
+
 
 }
