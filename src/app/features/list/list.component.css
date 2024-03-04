@@ -7,7 +7,7 @@
   
   .card-style {
     width: 80%;
-    height: 80%;
+    height: 100%;
     margin-left: 7.5%;
     margin-right: 7.5%;
     margin-top: 1%;
@@ -37,4 +37,45 @@
   
   .card-content {
     margin-top: 1%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .pagination li a {
+    padding: 8px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    color: #333;
+    border-radius: 4px;
+  }
+
+  .pagination li.active a {
+    background-color: #4CAF50;
+    color: white;
   }

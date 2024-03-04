@@ -13,7 +13,7 @@ export class EmployeeService {
 
 
   get() {
-    return this.http.get(`${this.baseUrl}/employee`);
+    return this.http.get(`${this.baseUrl}/employees`);
   }
 
   getById(id: string) {

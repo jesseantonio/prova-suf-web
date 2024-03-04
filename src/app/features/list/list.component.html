@@ -4,14 +4,28 @@
     </mat-card-header>
     <mat-card-content class="card-content">
 
-      <mat-card class="card-style">
-        <div class="card-header">Listar</div>
-        <mat-card-header class="card-header">
-        </mat-card-header>
-        <mat-card-content class="card-content">
-          
-        </mat-card-content>
-    </mat-card>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Salário</th>
+            <th>Idade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees; let i = index">
+            <td> {{ employee.id }}</td>
+            <td> {{ employee.employee_name }}</td>
+            <td> {{ employee.employee_salary }}</td>
+            <td> {{ employee.employee_age }}</td>
+          </tr>
+        </tbody>
+        <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+      </table>
 
     </mat-card-content>
 </mat-card>
