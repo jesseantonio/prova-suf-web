@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { EmployeeService } from 'src/app/core/services/employee/employee.service';
+import { EmployeeService } from 'src/app/core/services/employee.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-delete',
@@ -14,6 +15,7 @@ export class DeleteComponent implements OnInit {
   constructor(
     public form: FormBuilder,
     public employeeService: EmployeeService,
+    public localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class DeleteComponent implements OnInit {
     if (this.formGroup.valid) {
       let id = this.formGroup.value.id;
       this.employeeService.delete(id).subscribe(() => {
+        this.localStorageService.remove("employees", id)
         this.formGroup.reset();
       });
     }

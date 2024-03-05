@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  isMobile = false;
+  constructor() {
+    this.checkScreenSize();
+    window.addEventListener('resize', () => this.checkScreenSize());
+  }
 
   ngOnInit(): void {
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 600;
   }
 
 }

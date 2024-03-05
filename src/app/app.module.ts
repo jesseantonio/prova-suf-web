@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSnackBarModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
@@ -44,6 +44,7 @@ import { UpdateComponent } from './features/update/update.component';
     HttpClientModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    MatToolbarModule,
     AppRoutingModule
   ],
   providers: [],

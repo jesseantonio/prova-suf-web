@@ -1,31 +1,27 @@
 <mat-card class="card-style">
-    <div class="card-header">Listar</div>
-    <mat-card-header class="card-header">
-    </mat-card-header>
-    <mat-card-content class="card-content">
+  <div class="card-header">Listar</div>
+  <mat-card-header class="card-header">
+  </mat-card-header>
+  <mat-card-content class="card-content">
 
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Salário</th>
-            <th>Idade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let employee of employees; let i = index">
-            <td> {{ employee.id }}</td>
-            <td> {{ employee.employee_name }}</td>
-            <td> {{ employee.employee_salary }}</td>
-            <td> {{ employee.employee_age }}</td>
-          </tr>
-        </tbody>
-        <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator>
-      </table>
-
-    </mat-card-content>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Salário</th>
+          <th>Idade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeesPaginator; let i = index">
+          <td> {{ employee.id }}</td>
+          <td> {{ employee.name }}</td>
+          <td> {{ employee.salary }}</td>
+          <td> {{ employee.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="employees.length" [pageSize]="15" (page)="onPageEvent($event)"></mat-paginator>
+  </mat-card-content>
 </mat-card>

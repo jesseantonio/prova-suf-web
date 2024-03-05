@@ -1,15 +1,24 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" [opened]="true" class="sidenav">
-    <!-- Conteúdo da barra lateral -->
-    <mat-nav-list>
-      <a mat-list-item routerLink="/inserir" class="nav-item">Inserir</a>
-      <a mat-list-item routerLink="/listar" class="nav-item">Listar</a>
-      <a mat-list-item routerLink="/alterar" class="nav-item">Alterar</a>
-      <a mat-list-item routerLink="/excluir" class="nav-item">Excluir</a>
-      <!-- Adicione mais links conforme necessário -->
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div *ngIf="!isMobile">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" [opened]="true" class="sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/inserir" class="nav-item">Inserir</a>
+        <a mat-list-item routerLink="/listar" class="nav-item">Listar</a>
+        <a mat-list-item class="nav-item disabled" [class.disabled]="true">Alterar</a>
+        <a mat-list-item routerLink="/excluir" class="nav-item">Excluir</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<div *ngIf="isMobile">
+  <mat-toolbar color="primary" class="toolbar">
+    <a mat-list-item routerLink="/inserir" class="nav-item" id="nav-item-toolbar">Inserir</a>
+    <a mat-list-item routerLink="/listar" class="nav-item" id="nav-item-toolbar">Listar</a>
+    <a mat-list-item class="nav-item disabled" id="nav-item-toolbar" [class.disabled]="true">Alterar</a>
+    <a mat-list-item routerLink="/excluir" class="nav-item" id="nav-item-toolbar">Excluir</a> 
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>

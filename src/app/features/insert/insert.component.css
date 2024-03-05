@@ -37,3 +37,7 @@
 .card-content {
   margin-top: 1%;
 }
+
+.sidenav-container {
+  height: 100vh;
+}
