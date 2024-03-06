@@ -7,6 +7,9 @@
             <mat-label>Código do funcionário</mat-label>
             <input matInput formControlName="id" placeholder="Preencha">
         </mat-form-field>
+        <div *ngIf="status?.visible">
+            {{status.message}}
+          </div>
     </mat-card-content>
     <mat-card-actions>
         <div class="footer">

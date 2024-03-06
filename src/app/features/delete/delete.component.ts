@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { catchError, throwError } from 'rxjs';
+import { StatusDTO } from 'src/app/core/entities/status.dtos';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
@@ -12,6 +14,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class DeleteComponent implements OnInit {
 
   public formGroup!: FormGroup;
+  public status!: StatusDTO;
   constructor(
     public form: FormBuilder,
     public employeeService: EmployeeService,
@@ -28,10 +31,22 @@ export class DeleteComponent implements OnInit {
     this.validaForm()
     if (this.formGroup.valid) {
       let id = this.formGroup.value.id;
-      this.employeeService.delete(id).subscribe(() => {
-        this.localStorageService.remove("employees", id)
-        this.formGroup.reset();
-      });
+      this.employeeService.delete(id).pipe(
+        catchError((err: any) => {
+          this.status = {
+            visible: true,
+            message: "Houve um problema ao deletar o funcionário"
+          }
+          return throwError(err);
+        }
+        )).subscribe(() => {
+          this.localStorageService.remove("employees", id)
+          this.status = {
+            visible: true,
+            message: "Funcionário deletado com sucesso!"
+          };
+          this.formGroup.reset();
+        });
     }
   }
 

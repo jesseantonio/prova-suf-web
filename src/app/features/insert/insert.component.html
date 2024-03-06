@@ -17,6 +17,9 @@
         <mat-label>Idade</mat-label>
         <input matInput formControlName="age" placeholder="Preencha">
       </mat-form-field>
+      <div *ngIf="status?.visible">
+        {{status.message}}
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <div class="footer">

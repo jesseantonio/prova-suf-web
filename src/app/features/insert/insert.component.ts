@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { catchError, throwError } from 'rxjs';
 import { Employee } from 'src/app/core/entities/employee.dto';
+import { StatusDTO } from 'src/app/core/entities/status.dtos';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
@@ -13,6 +15,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class InsertComponent implements OnInit {
 
   public formGroup!: FormGroup;
+  public status!: StatusDTO;
   constructor(
     public form: FormBuilder,
     public employeeService: EmployeeService,
@@ -35,16 +38,32 @@ export class InsertComponent implements OnInit {
     if (this.formGroup.valid) {
       let employee = this.formGroup.value;
       debugger
-      this.employeeService.create(employee).subscribe((result: any) => {
-        const employeeResult = {
-          id: result.data.id,
-          name: result.data.employee.name,
-          age: result.data.employee.age,
-          salary: result.data.employee.salary,
-        } as Employee;
-        this.localStorage.set("employees", employeeResult);
-        this.formGroup.reset();
-      });
+      this.status = {
+        message: null,
+        visible: false
+      }
+      this.employeeService.create(employee).pipe(
+        catchError((err: any) => {
+          this.status = {
+            visible: true,
+            message: "Houve um problema ao cadastrar o funcionário"
+          }
+          return throwError(err);
+        }
+        )).subscribe((result: any) => {
+          const employeeResult = {
+            id: result.data.id,
+            name: result.data.employee.name,
+            age: result.data.employee.age,
+            salary: result.data.employee.salary,
+          } as Employee;
+          this.localStorage.set("employees", employeeResult);
+          this.status = {
+            visible: true,
+            message: "Funcionário cadastrado com sucesso!"
+          };
+          this.formGroup.reset();
+        });
     }
   }
 
