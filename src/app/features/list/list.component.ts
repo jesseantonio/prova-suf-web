@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
-import { Employee } from 'src/app/core/entities/employee.dto';
+import { EmployeeDTO } from 'src/app/core/entities/employee.dto';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
@@ -754,7 +754,6 @@ export class ListComponent implements OnInit {
     }
     let indiceInicial = paginador * 15;
     let indiceFinal = indiceInicial + 15;
-    debugger
     this.employeesPaginator = employeesClone.slice(indiceInicial, indiceFinal)
   }
 }

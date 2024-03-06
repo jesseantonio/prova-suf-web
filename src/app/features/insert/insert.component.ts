@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { catchError, throwError } from 'rxjs';
-import { Employee } from 'src/app/core/entities/employee.dto';
+import { EmployeeDTO } from 'src/app/core/entities/employee.dto';
 import { StatusDTO } from 'src/app/core/entities/status.dtos';
 import { EmployeeService } from 'src/app/core/services/employee.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -37,7 +37,6 @@ export class InsertComponent implements OnInit {
     this.validaForm()
     if (this.formGroup.valid) {
       let employee = this.formGroup.value;
-      debugger
       this.status = {
         message: null,
         visible: false
@@ -56,7 +55,7 @@ export class InsertComponent implements OnInit {
             name: result.data.employee.name,
             age: result.data.employee.age,
             salary: result.data.employee.salary,
-          } as Employee;
+          } as EmployeeDTO;
           this.localStorage.set("employees", employeeResult);
           this.status = {
             visible: true,

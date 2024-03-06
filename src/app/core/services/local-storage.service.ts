@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../entities/employee.dto';
+import { EmployeeDTO } from '../entities/employee.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class LocalStorageService {
   public remove(key: string, id: number) {
     let listaExistente = this.get(key);
     if (this.storage && listaExistente?.length > 0) {
-      const empregadoEncontrado = listaExistente.find((data: Employee) => data.id == id);
+      const empregadoEncontrado = listaExistente.find((data: EmployeeDTO) => data.id == id);
       if (empregadoEncontrado) {
         const empregadorIndex = listaExistente.indexOf(empregadoEncontrado);
         listaExistente.splice(empregadorIndex, 1);

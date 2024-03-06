@@ -16,6 +16,7 @@ import { InsertComponent } from './features/insert/insert.component';
 import { ListComponent } from './features/list/list.component';
 import { SidebarComponent } from './features/sidebar/sidebar.component';
 import { UpdateComponent } from './features/update/update.component';
+import { LayoutComponent } from './features/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UpdateComponent } from './features/update/update.component';
     InsertComponent,
     DeleteComponent,
     UpdateComponent,
-    ListComponent
+    ListComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
